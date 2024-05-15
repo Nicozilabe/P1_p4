@@ -12,6 +12,8 @@ function inicio() {
     document.querySelector("#btnEj9").addEventListener("click", ej9);
     document.querySelector("#btnEj10").addEventListener("click", ej10);
     document.querySelector("#btnEj11").addEventListener("click", ej11);
+    document.querySelector("#btnEj12").addEventListener("click", ej12);
+    document.querySelector("#btnEj13").addEventListener("click", ej13);
 }
 
 function ej1() {
@@ -269,4 +271,28 @@ function ej11() {
         }
     }
     document.querySelector("#resEj11").innerHTML = res
+}
+
+function ej12(){
+    let stri = document.querySelector("#txt1Ej12").value;
+    let res="";
+for (i=(stri.length - 1); i >= 0 ; i--){
+    let char=stri.charAt(i);
+    res+=char;
+}
+document.querySelector("#resEj12").innerHTML = res
+}
+
+function ej13(){
+    let stri = document.querySelector("#txt1Ej13").value;
+    let res="", contador=0;
+    let letra=stri.charAt(0);
+for (i=0; i < stri.length ; i++){
+    let char=stri.charAt(i);
+    if (letra === char){
+        contador++
+    }
+}
+res=`la primera letra aparece ${contador} veces`
+document.querySelector("#resEj13").innerHTML = res
 }
