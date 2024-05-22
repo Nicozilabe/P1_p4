@@ -471,7 +471,7 @@ function calcularSueldo(sueldo, hijos) {
     fonasa = sueldo * 0.06;
   }
   bps=(sueldo*0.15);
-  frl=(sueldo*0.01);
+  frl=(sueldo*0.001);
   res=((sueldo)-(fonasa+bps+frl)).toFixed(2);
   return(res);
 }
