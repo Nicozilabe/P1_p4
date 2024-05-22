@@ -15,6 +15,11 @@ function inicio() {
   document.querySelector("#btnEj12").addEventListener("click", ej12);
   document.querySelector("#btnEj13").addEventListener("click", ej13);
   document.querySelector("#btnEj14").addEventListener("click", ej14);
+  //Funciones
+  document.querySelector("#btnEj1f").addEventListener("click", ej1f);
+  document.querySelector("#btnEj2f").addEventListener("click", ej2f);
+  document.querySelector("#btnEj5f").addEventListener("click", ej5f);
+  document.querySelector("#btnEj8f").addEventListener("click", ej8f);
 }
 
 function ej1() {
@@ -344,4 +349,129 @@ function ej14() {
   }
 
   document.querySelector("#resEj14").innerHTML = res;
+}
+//Funciones
+function ej1f() {
+  let numero1 = parseFloat(document.querySelector("#txt1Ej1f").value);
+  let numero2 = parseFloat(document.querySelector("#txt2Ej1f").value);
+  let aux;
+  if (numero2 > numero1) {
+    aux = numero2;
+    numero2 = numero1;
+    numero1 = aux;
+  }
+  res = ej1fFuncion(numero1, numero2);
+  document.querySelector("#resEj1f").innerHTML = res;
+}
+function ej1fFuncion(numero1, numero2) {
+  let contador = 0;
+  for (i = numero2; i <= numero1; i++) {
+    if (i % 2 == 0) {
+      contador++;
+    }
+  }
+  return contador;
+}
+function ej2f() {
+  let año = document.querySelector("#btnEj2f").getAttribute("data-año");
+  año = parseInt(document.querySelector(año).value);
+  if (año < 0 || isNaN(año)) {
+    res = "ingrese año válido";
+  } else {
+    if (esBisiesto(año)) {
+      res = "El año es bisiesto";
+    } else {
+      res = "El año no es bisiesto";
+    }
+  }
+  document.querySelector("#resEj2f").innerHTML = res;
+}
+function esBisiesto(año) {
+  if ((año % 4 === 0 && año % 100 !== 0) || año % 400 === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+function calcularAreaTriangulo(base, altura) {
+  res = -1;
+  if (!(base <= 0 || altura <= 0 || isNaN(base) || isNaN(altura))) {
+    res = (base * altura) / 2;
+  }
+  return res;
+}
+function conversor(grados) {
+  return 1.8 * grados + 32;
+}
+function ej5f() {
+  let temperaturaInicial = parseFloat(
+    document.querySelector("#txt1Ej5f").value
+  );
+  let unidadFinal = document.querySelector("#unidadEj5f").value;
+  res = conversorEj5(temperaturaInicial, unidadFinal).toFixed(2);
+  document.querySelector("#resEj5f").innerHTML = res;
+}
+function conversorEj5(temp, unidad) {
+  let res;
+  switch (unidad) {
+    case "Celsius":
+      res = (temp - 32) / 1.8;
+      break;
+    case "Kelvn":
+      res = (temp + 459.67) / 1.8;
+      break;
+    case "Rankine":
+      res = temp + 459.67;
+      break;
+    case "Réaumur":
+      res = (temp - 32) / 2.25;
+      break;
+  }
+  return res;
+}
+function ej6f(base, exponente) {
+  return Math.pow(base, exponente);
+  //soy re gracioso
+}
+function ej6fDeVerdad(base, exponente) {
+  let res = base;
+  if (exponente == 0) {
+    res = 1;
+  } else if (exponente > 0) {
+    for (i = 1; i < exponente; i++) {
+      res = res * base;
+    }
+  } else {
+    for (i = 1; i < Math.abs(exponente); i++) {
+      res = res * base;
+    }
+    res = 1 / res;
+  }
+  return res;
+}
+function ej7f(stri) {
+  let res = "";
+  for (i = stri.length - 1; i >= 0; i--) {
+    let char = stri.charAt(i);
+    res += char;
+  }
+  return res;
+}
+function ej8f() {
+  let sueldo = parseFloat(document.querySelector("#txt1Ej8f").value);
+  let hijos = document.querySelector("#hijosEj8f").checked;
+  res = "Su sueldo líquido es de: $" + calcularSueldo(sueldo, hijos);
+  document.querySelector("#resEj8f").innerHTML = res;
+}
+function calcularSueldo(sueldo, hijos) {
+  let fonasa, bps, frl, res;
+  if (hijos) {
+    fonasa = sueldo * 0.045;
+  } else {
+    fonasa = sueldo * 0.06;
+  }
+  bps=(sueldo*0.15);
+  frl=(sueldo*0.01);
+  res=((sueldo)-(fonasa+bps+frl)).toFixed(2);
+  return(res);
 }
